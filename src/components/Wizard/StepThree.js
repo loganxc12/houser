@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
+import { connect } from "react-redux";
+import { updateStepThree } from "../../ducks/reducer";
 
 class StepThree extends Component {
      constructor(props) {
@@ -40,17 +42,22 @@ class StepThree extends Component {
      }
 
      render() {
-
+          const { updateStepThree } = this.props;
           const { mortgage, rent } = this.state;
           return (
                <div className="App">
                     <input placeholder="Monthly mortgage amount" name="mortgage" onChange={this.handleInputChange} value={mortgage}></input>
                     <input placeholder="Desired monthly rent" name="rent" onChange={this.handleInputChange} value={rent}></input>
-                    <Link to="/wizard/step2"><button>Previous Step</button></Link>
+                    <Link to="/wizard/step2"><button onClick={() => updateStepThree(mortgage, rent)}>Previous Step</button></Link>
                     <button onClick={this.postHouseToServer}>Complete</button>
                </div>
           );
      }
 }
 
-export default StepThree;
+function mapStateToProps(reduxState) {
+     const { name, address, city, state, zipcode, imageUrl, mortgage, rent } = reduxState;
+     return { name, address, city, state, zipcode, imageUrl, mortgage, rent };
+}
+
+export default connect(mapStateToProps, {updateStepThree})(StepThree);

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
+import { connect } from "react-redux";
+import { updateStepTwo } from "../../ducks/reducer";
 
 class StepTwo extends Component {
      constructor(props) {
@@ -26,16 +28,21 @@ class StepTwo extends Component {
      }
 
      render() {
-
+          const { updateStepTwo } = this.props;
           const { imageUrl } = this.state;
           return (
                <div className="App">
                     <input placeholder="ImageUrl" name="imageUrl" onChange={this.handleInputChange} value={imageUrl}></input>
-                    <Link to="/wizard/step3"><button>Next Step</button></Link>
-                    <Link to="/wizard/step1"><button>Previous Step</button></Link>
+                    <Link to="/wizard/step3"><button onClick={() => updateStepTwo(imageUrl)}>Next Step</button></Link>
+                    <Link to="/wizard/step1"><button onClick={() => updateStepTwo(imageUrl)}>Previous Step</button></Link>
                </div>
           );
      }
 }
 
-export default StepTwo;
+function mapStateToProps(reduxState) {
+     const { imageUrl } = reduxState;
+     return { imageUrl };
+}
+
+export default connect(mapStateToProps, { updateStepTwo })(StepTwo);
