@@ -36,10 +36,17 @@ class Dashboard extends Component {
                <House key={house.id} house={house} deleteHouse={this.deleteHouseFromServer} /> 
           )
      return (
-          <div className="App">
-          DASHBOARD
-          <Link to="/wizard/step1"><button>Add New Property</button></Link>
-          { housesToDisplay }
+          <div className="app-background">
+               <div className="dash-container">
+                    <div className="dash-header">
+                         <h1>Dashboard</h1>
+                         <Link to="/wizard/step1"><button>Add New Property</button></Link>
+                    </div>
+                    <div className="houses-container">
+                         <h3>Home Listings</h3>
+                         { housesToDisplay }
+                    </div>
+               </div>
           </div>
      );
      }

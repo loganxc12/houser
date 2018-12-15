@@ -5,6 +5,7 @@ import { Redirect } from "react-router-dom";
 import axios from "axios";
 import { connect } from "react-redux";
 import { updateStepThree } from "../../ducks/reducer";
+import { clearStateValues } from "../../ducks/reducer";
 
 class StepThree extends Component {
      constructor(props) {
@@ -31,14 +32,21 @@ class StepThree extends Component {
      }
 
      postHouseToServer() {
-          const { name, address, city, state, zipcode } = this.state;
-          const newHouse = { name, address, city, state, zipcode };
+          console.log('inside post');
+          const { name, address, city, state, zip, imageUrl } = this.props;
+          const { mortgage, rent } = this.state;
+          const newHouse = { name, address, city, state, zip, imageUrl, mortgage, rent };
           axios.post("/api/houses", newHouse).then(response => {
-               this.resetState();
-               this.setState({
-                    redirect: true
-               })
+               this.props.clearStateValues();
+               // this.setState({
+               //      redirect: true
+               // })
           })
+     }
+
+     componentDidMount() {
+          const { mortgage, rent } = this.props;
+          this.setState({ mortgage, rent })
      }
 
      render() {
@@ -46,18 +54,20 @@ class StepThree extends Component {
           const { mortgage, rent } = this.state;
           return (
                <div className="App">
-                    <input placeholder="Monthly mortgage amount" name="mortgage" onChange={this.handleInputChange} value={mortgage}></input>
-                    <input placeholder="Desired monthly rent" name="rent" onChange={this.handleInputChange} value={rent}></input>
+                    <p>Monthly mortgage amount:</p>
+                    <input name="mortgage" onChange={this.handleInputChange} value={mortgage}></input>
+                    <p>Desired monthly rent:</p>
+                    <input name="rent" onChange={this.handleInputChange} value={rent}></input>
                     <Link to="/wizard/step2"><button onClick={() => updateStepThree(mortgage, rent)}>Previous Step</button></Link>
-                    <button onClick={this.postHouseToServer}>Complete</button>
+                    <Link to="/"><button onClick={this.postHouseToServer}>Complete</button></Link>
                </div>
           );
      }
 }
 
 function mapStateToProps(reduxState) {
-     const { name, address, city, state, zipcode, imageUrl, mortgage, rent } = reduxState;
-     return { name, address, city, state, zipcode, imageUrl, mortgage, rent };
+     const { name, address, city, state, zip, imageUrl, mortgage, rent } = reduxState;
+     return { name, address, city, state, zip, imageUrl, mortgage, rent };
 }
 
-export default connect(mapStateToProps, {updateStepThree})(StepThree);
+export default connect(mapStateToProps, {updateStepThree, clearStateValues})(StepThree);

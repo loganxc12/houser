@@ -12,8 +12,8 @@ module.exports = {
 
      postHouse: (req, res) => {
           const dbInstance = req.app.get("db");
-          const { name, address, city, state, zipcode } = req.body;
-          dbInstance.create_house( [name, address, city, state, zipcode] )
+          const { name, address, city, state, zip, imageUrl, mortgage, rent  } = req.body;
+          dbInstance.create_house( [name, address, city, state, zip, imageUrl, mortgage, rent] )
                .then( () => res.sendStatus(200) )
                .catch( error => {
                     res.status(500).send({errorMessage: "Error in postHouse method"});

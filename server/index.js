@@ -10,6 +10,7 @@ app.use(bodyParser.json());
 
 massive(process.env.CONNECTION_STRING).then(dbInstance => { 
      app.set("db", dbInstance); 
+     console.log("connected to db")
 }).catch(error => console.log("error in massive connection", error));
 
 app.get("/api/houses", controller.getHouses);

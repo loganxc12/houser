@@ -27,12 +27,18 @@ class StepTwo extends Component {
           })
      }
 
+     componentDidMount() {
+          const { imageUrl } = this.props;
+          this.setState({ imageUrl })
+     }
+
      render() {
           const { updateStepTwo } = this.props;
           const { imageUrl } = this.state;
           return (
                <div className="App">
-                    <input placeholder="ImageUrl" name="imageUrl" onChange={this.handleInputChange} value={imageUrl}></input>
+                    <p>Image URL:</p>
+                    <input name="imageUrl" onChange={this.handleInputChange} value={imageUrl}></input>
                     <Link to="/wizard/step3"><button onClick={() => updateStepTwo(imageUrl)}>Next Step</button></Link>
                     <Link to="/wizard/step1"><button onClick={() => updateStepTwo(imageUrl)}>Previous Step</button></Link>
                </div>

@@ -30,3 +30,126 @@
     transform: rotate(360deg);
   }
 }
+
+/* HEADER */
+
+.header {
+  width: 100%;
+  height: 100px;
+  background-color: #519872;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo-box {
+  width: 450px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
+
+.logo-box img {
+  margin: 15px;
+}
+
+.app-background {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  background-color: #AFD4C0;
+}
+
+.dash-container {
+  width: 50vw;
+  margin: 0 auto;
+  background-color: #E5F4EC;
+}
+
+.dash-header {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.dash-header h1 {
+  color: #3B5249;
+}
+
+.dash-header button {
+  margin: 20px;
+  background-color: #8aea92;
+  border: none;
+  padding: 10px;
+  font-size: 20px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.houses-container {
+  border-top: 1px solid #000;
+  margin: 0 20px 10px;
+  position: relative;
+}
+
+.houses-container h3 {
+  display: block;
+  text-align: left;
+  margin-left: 30px;
+}
+
+/* HOUSES */
+
+.house {
+  width: 100%;
+  height: 150px;
+  background-color: #dedede;
+  margin: 20px 0;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.house-column {
+  width: 33%;
+  height: 100%;
+  padding: 10px;
+  text-align: left;
+}
+
+.house-img-column {
+  width: 33%;
+  height: 100%;
+  padding: 10px;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.house-img {
+  width: 100%;
+  height: 90%;
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5iMAE5bvAfwY0s5K9jzei4F-0flLSYTstxERUkmaMKCH2_1bx");
+}
+
+.house a {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  cursor: pointer;
+}
+
+.wizard button {
+  margin: 20px;
+  background-color: #8aea92;
+  border: none;
+  padding: 10px;
+  font-size: 20px;
+  font-weight: 700;
+  cursor: pointer;
+}

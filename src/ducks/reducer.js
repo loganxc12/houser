@@ -4,7 +4,7 @@ const INITIAL_STATE = {
      address: "",
      city: "",
      state: "",
-     zipcode: "",
+     zip: "",
      imageUrl: "",
      mortgage: "",
      rent: ""
@@ -21,17 +21,20 @@ function reducer(state = INITIAL_STATE, action) {
                     address: action.payload.address,
                     city: action.payload.city,
                     state: action.payload.state,
-                    zipcode: action.payload.zipcode
+                    zip: action.payload.zip
                });
           
           case UPDATE_STEP_TWO: 
-               return Object.assign( {}, state, {imageUrl: action.payload.imageUrl} );
+               return Object.assign( {}, state, {imageUrl: action.payload} );
                
           case UPDATE_STEP_THREE: 
                return Object.assign( {}, state, {
                     mortgage: action.payload.mortgage,
                     rent: action.payload.rent
                });
+          
+          case CLEAR_STATE_VALUES: 
+               return action.payload
 
           default: return state;
      
@@ -43,19 +46,20 @@ function reducer(state = INITIAL_STATE, action) {
 const UPDATE_STEP_ONE = "UPDATE_STEP_ONE";
 const UPDATE_STEP_TWO = "UPDATE_STEP_TWO";
 const UPDATE_STEP_THREE = "UPDATE_STEP_THREE";
+const CLEAR_STATE_VALUES = "CLEAR_STATE_VALUES";
 
 //ACTION CREATORS
-export function updateStepOne(name, address, city, state, zipcode) {
+export function updateStepOne(name, address, city, state, zip) {
      return {
           type: UPDATE_STEP_ONE,
-          payload: { name, address, city, state, zipcode }
+          payload: { name, address, city, state, zip }
      }
 }
 
 export function updateStepTwo(imageUrl) {
      return {
           type: UPDATE_STEP_TWO,
-          payload: { imageUrl }
+          payload: imageUrl
      }
 }
 
@@ -63,6 +67,13 @@ export function updateStepThree(mortgage, rent) {
      return {
           type: UPDATE_STEP_THREE,
           payload: { mortgage, rent }
+     }
+}
+
+export function clearStateValues() {
+     return {
+          type: CLEAR_STATE_VALUES,
+          payload: INITIAL_STATE
      }
 }
 
